@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step Tabs with Icons</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    
+<div class="container mt-3">
+    <input type="hidden" id="apiData">
+    <!-- Popup -->
+    <div id="popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <i id="popup-icon" class=""></i>
+            <p id="popup-message"></p>
+            <button class="btn btn-sm" onclick="closePopup()" style="font-size: small; padding: 7px;">Close</button>
+        </div>
+    </div>
+    <div class="spinner" id="spinner"></div>
+    <!-- End Popup -->
+    <div class="row mb-3 g-0">
+        <div class="col-sm-11">
+          <div class="search-container">
+            <input type="text" class="form-control search-input" placeholder="Enter your email..." id="searchBox">
+            <span onclick="searchFunction()" id="searchClick"><i class="fas fa-search search-icon"></i></span>
+          </div>
+        </div>
+        <div class="col-sm-1">
+            <button class="btn btn-primary float-end refresh-icon" onclick="location.reload()" style="font-size: small;"><i class="fa-solid fa-arrows-rotate"></i></button>
+            </div>
+      </div>
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link step-tab active" id="children_Btn" onclick="getActiveTab(this)"  
+                data-bs-toggle="pill" data-bs-target="#pills-step1" type="button" role="tab" aria-controls="pills-step1" aria-selected="true">
+                <span class="icon"><i class="fa-solid fa-child"></i></span> Children
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link step-tab" id="parent_Btn" onclick="getActiveTab(this)" 
+                data-bs-toggle="pill" data-bs-target="#pills-step2" type="button" role="tab" aria-controls="pills-step2" aria-selected="false" >
+                <span class="icon"><i class="fa-solid fa-hands-holding-child"></i></span> Parents
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link step-tab" id="safezone_Btn" onclick="getActiveTab(this)" 
+                data-bs-toggle="pill" data-bs-target="#pills-step3" type="button" role="tab" aria-controls="pills-step3" aria-selected="false">
+                <span class="icon"><i class="fa-solid fa-user-shield"></i></span> Safe Zone
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link step-tab" id="subscription_Btn" onclick="getActiveTab(this)" 
+                data-bs-toggle="pill" data-bs-target="#pills-step4" type="button" role="tab" aria-controls="pills-step4" aria-selected="false">
+                <span class="icon"><i class="fa-solid fa-cart-shopping"></i></span> Subscription
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link step-tab" id="activewish_Btn" onclick="getActiveTab(this)" 
+                data-bs-toggle="pill" data-bs-target="#pills-step5" type="button" role="tab" aria-controls="pills-step5" aria-selected="false">
+                <span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span> Active Wish
+            </button>
+        </li>
+    </ul>
+    
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-step1" role="tabpanel" aria-labelledby="children_Btn" tabindex="0">
+            <div class="card">
+                <div class="card-body">
+                    <div id="childrenData">
+                  Please enter a email address in the search box.
+                </div>
+                </div>
+              </div>
+        </div>
+        <div class="tab-pane fade" id="pills-step2" role="tabpanel" aria-labelledby="parent_Btn" tabindex="0">
+            <div class="card">
+                <div class="card-body">
+                    <div id="ParentsData">
+                        Please enter a email address in the search box.
+                      </div>
+                </div>
+              </div>
+        </div>
+        <div class="tab-pane fade" id="pills-step3" role="tabpanel" aria-labelledby="safezone_Btn" tabindex="0">
+            <div class="card">
+                <div class="card-body">
+                    <div id="safezoneData">
+                        Please enter a email address in the search box.
+                      </div>
+                </div>
+              </div>
+        </div>
+        <div class="tab-pane fade" id="pills-step4" role="tabpanel" aria-labelledby="subscription_Btn" tabindex="0">
+            <div class="card">
+                <div class="card-body">
+                    <div id="subscriptionData">
+                        Please enter a email address in the search box.
+                      </div>
+                </div>
+              </div>
+        </div>
+        <div class="tab-pane fade" id="pills-step5" role="tabpanel" aria-labelledby="activewish_Btn" tabindex="0">
+            <div class="card">
+                <div class="card-body">
+                    <div id="activeWishData">
+                        Please enter a email address in the search box.
+                      </div>
+                </div>
+              </div>
+        </div>
+    </div>
+    
+</div>
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("#children_Btn, #parent_Btn, #safezone_Btn, #subscription_Btn, #activewish_Btn")
+        .forEach(btn => {
+            btn.style.pointerEvents = "none";  // Disable click
+            btn.style.cursor = "not-allowed";  // Show disabled cursor
+        });
+});
+
+     document.getElementById("searchBox").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Prevent form submission if inside a form
+            searchFunction();
+        }
+    });
+</script>
+<script>
+    window.onload = function () {
+    ZOHODESK.extension.onload().then(function (App) {
+        
+    }).catch(function (error) {
+        console.error("Error:", error);
+        });
+        };
+</script>
+<!-- <script src="/app/js/extension.js"></script> -->
+<script src="https://js.zohostatic.in/support/developer_sdk/v1/js/ZohoDeskClientSDK.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="./custom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

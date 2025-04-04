@@ -1,0 +1,52 @@
+{
+  "locale": [
+    "en"
+  ],
+  "service": "DESK",
+  "storage": false,
+  "whiteListedDomains": [
+    "https://pgapi-dev.npd.parentgeenee.io"
+  ],
+  "modules": {
+    "widgets": [
+      {
+        "location": "desk.ticket.detail.subtab",
+        "url": "/app/index.html",
+        "name": "Parent Geenee",
+        "logo": "/app/img/parent_new.png",
+        "icon": "/app/img/parent_new.png"
+      }
+    ]
+  },
+  "zohoAuthorisation": {
+    "connectionLinkName" :"parentgeeneedev",
+    "connectionName": "parentGeeneeDev",
+    "serviceName": "zlabs_integration",
+    "type": "connectors",
+    "userAccess":  false,
+    "isUserDefinedService":  false,
+    "sharedBy":  "60038181339",
+    "scope": [
+      "Desk.settings.ALL",  
+      "Desk.tickets.ALL",  
+      "Desk.tasks.ALL",  
+      "Desk.search.READ",  
+      "Desk.contacts.ALL",  
+      "Desk.basic.ALL",  
+      "Desk.articles.ALL",  
+      "Desk.extensions.ALL",  
+      "Desk.zia.ALL",  
+      "Desk.calls.ALL",  
+      "Desk.events.ALL",  
+      "Desk.community.ALL",  
+      "Desk.imports",  
+      "Desk.integrations.ALL",  
+      "Desk.custommodule.ALL",  
+      "Desk.exports"
+    ]
+  },
+  "type": "org",
+  "connectors": [],
+  "config": [],
+  "moduleSupport": false
+}
